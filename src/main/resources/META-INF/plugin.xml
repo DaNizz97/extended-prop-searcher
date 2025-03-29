@@ -1,18 +1,16 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.danizz97.extendedpropsearcher</id>
-    <name>extended-prop-searcher</name>
-    <vendor>danizz97</vendor>
+    <id>xyz.danizz.extended-prop-searcher</id>
+    <name>Extended Prop Searcher</name>
+    <vendor>DaNizz</vendor>
 
     <depends>com.intellij.modules.platform</depends>
-
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.properties</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.danizz97.extendedpropsearcher.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <psi.referenceContributor implementation="xyz.danizz.propsearcher.PsiPropertyRefContributor"
+                                  language="Properties"/>
+        <annotator language="Properties" implementationClass="xyz.danizz.propsearcher.PropAnnotator"/>
     </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.danizz97.extendedpropsearcher.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
 </idea-plugin>
