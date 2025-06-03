@@ -16,10 +16,16 @@ class PsiPropertyRefContributor : PsiReferenceContributor() {
                     context: ProcessingContext
                 ): Array<PsiReference> {
                     val propertyVal = element as PropertyValueImpl
-                    val propName = retrievePropKeyReferenceStringFromPlaceholder(propValue = propertyVal.text)
-                    val start = propertyVal.text.indexOf(propName)
-                    val end = start + propName.length
-                    return arrayOf(PropertyReference(propertyVal, TextRange(start, end)))
+                    val resArray = ArrayList<PsiReference>()
+                    for (propWPos in extractPlaceholderKeysWithPositions(propertyVal.text)) {
+                        resArray.add(
+                            PropertyReference(
+                                propertyVal,
+                                TextRange(propWPos.range.start, propWPos.range.endInclusive + 1)
+                            )
+                        )
+                    }
+                    return resArray.toTypedArray()
                 }
             }
         )

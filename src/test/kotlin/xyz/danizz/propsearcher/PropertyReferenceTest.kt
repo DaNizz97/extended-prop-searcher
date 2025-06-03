@@ -16,12 +16,36 @@ class PropertyReferenceTest : LightPlatformCodeInsightFixture4TestCase() {
 
         val offset = psiFile.text.indexOf("my.prop")
         val element: PsiElement? = psiFile.findElementAt(offset)
-        assertNotNull("Элемент не найден в позиции $offset", element)
+        assertNotNull("The element was not found at the position. $offset", element)
 
         val references = element!!.references
-        assertTrue("Ожидалась хотя бы одна ссылка", references.isNotEmpty())
+        assertNotNull("Expected element to have references", references)
+        assertTrue("Expected element to have at least one reference", references.isNotEmpty())
 
         val resolveResults = (references[0] as PsiPolyVariantReference).multiResolve(false)
-        assertTrue("Ожидался хотя бы один результат разрешения", resolveResults.isNotEmpty())
+        assertTrue("At least one resolution result was expected.", resolveResults.isNotEmpty())
+    }
+
+    @Test
+    fun testThatMultiReferencesValuesResolvedCorrectly() {
+        myFixture.addFileToProject("test.properties", "my.prop=some value\nsecond.prop=sov")
+
+        val fileContent = """
+            dummy="${'$'}{my.prop}.${'$'}{second.prop}"
+        """.trimIndent()
+        val psiFile = myFixture.configureByText("dummy.properties", fileContent)
+
+        val offset = psiFile.text.indexOf("my.prop")
+        val element: PsiElement? = psiFile.findElementAt(offset)
+        assertNotNull("The element was not found at the position. $offset", element)
+
+        val references = element!!.references
+        assertNotNull("Expected element to have references", references)
+        assertTrue("Expected element to have at least one reference", references.isNotEmpty())
+
+        for (reference in references) {
+            val resolveResults = (reference as PsiPolyVariantReference).multiResolve(false)
+            assertTrue("At least one resolution result was expected.", resolveResults.isNotEmpty())
+        }
     }
 }

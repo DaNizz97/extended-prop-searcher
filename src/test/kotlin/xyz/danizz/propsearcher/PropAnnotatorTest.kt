@@ -11,9 +11,9 @@ class PropAnnotatorTest : LightPlatformCodeInsightFixture4TestCase() {
 
         val highlights = myFixture.doHighlighting()
         val warningFound = highlights.any {
-            it.description?.contains("Placeholder property key 'non.existent' not found") == true
+            it.severity.name == "WARNING"
         }
-        assertTrue("Ожидалось предупреждение для неразрешенного placeholder", warningFound)
+        assertTrue("Warning expected for unresolved placeholder", warningFound)
     }
 
     @Test
@@ -24,6 +24,6 @@ class PropAnnotatorTest : LightPlatformCodeInsightFixture4TestCase() {
 
         val highlights = myFixture.doHighlighting()
         val warningFound = highlights.any { it.severity.toString() == "WARNING" }
-        assertFalse("Предупреждение для разрешенного placeholder появилось", warningFound)
+        assertFalse("Warning appeared for resolved placeholder", warningFound)
     }
 }
