@@ -11,6 +11,9 @@ and error detection for property references.
 - **Navigation:** Jump directly from property placeholders (e.g. `propKey=${refToProp}` or
   `propKey=${refToProp:defaultVal}`) to their declaration or usage.
 - **Highlighting:** Correctly highlights references: normal for valid ones, warning for unresolved.
+- **Renaming:** Renaming the declaration leads to automatic rename of all property references (usages). If there's a 
+  single declaration — rename refactoring can be done from usage. If there are multiple declarations it is possible to 
+  perform such refactoring only from the specific declaration (standard IDEA behavior).
 
 <!-- Plugin description end -->
 

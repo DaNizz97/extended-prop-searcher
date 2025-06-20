@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+## [1.1.1] - 2025-06-20
+
+### Fixed
+
+- **Unresolved link display message:** Now the error message shows only useful information
+- **Description updated**
+
 ## [1.1.0] - 2025-06-06
 
 ### Added
@@ -18,6 +25,7 @@
 `propKey=${refToProp:defaultVal}`) to their declaration or usage.
 - **Highlighting:** Correctly highlights references: normal for valid ones, warning for unresolved.
 
-[Unreleased]: https://github.com/DaNizz97/extended-prop-searcher/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/DaNizz97/extended-prop-searcher/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/DaNizz97/extended-prop-searcher/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/DaNizz97/extended-prop-searcher/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/DaNizz97/extended-prop-searcher/commits/v1.0.1

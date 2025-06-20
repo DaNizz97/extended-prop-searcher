@@ -33,7 +33,7 @@ class PropAnnotator : Annotator {
             } else {
                 holder.newAnnotation(
                     HighlightSeverity.WARNING,
-                    "Placeholder property key '$refKey' not found"
+                    "Placeholder property key '${refKey.key}' not found"
                 ).range(textRange)
                     .highlightType(ProblemHighlightType.WARNING).create()
             }
