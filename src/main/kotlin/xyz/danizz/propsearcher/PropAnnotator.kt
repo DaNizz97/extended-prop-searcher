@@ -35,7 +35,9 @@ class PropAnnotator : Annotator {
                     HighlightSeverity.WARNING,
                     "Placeholder property key '${refKey.key}' not found"
                 ).range(textRange)
-                    .highlightType(ProblemHighlightType.WARNING).create()
+                    .highlightType(ProblemHighlightType.WARNING)
+                    .withFix(PropertyReferenceMissingQuickFix(refKey.key))
+                    .create()
             }
         }
     }

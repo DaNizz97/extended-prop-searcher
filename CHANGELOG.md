@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### Added
+
+- **Quick fix action:** From now on if a property reference key was not found, it is possible to create the property 
+  with a provided quick fix in a selected file
+
 ## [1.1.1] - 2025-06-20
 
 ### Fixed
