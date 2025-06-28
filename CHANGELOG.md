@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- **Quick fix action:** Quick-fix no longer fails when adding a property to an empty or comments-only **.properties** 
+  file.
+
+### Changed
+
+- Placeholders are now accepted only if they match valid key syntax (`[A-Za-z0-9_.]+`); all other patterns are ignored.
+
 ## [1.2.0] - 2025-06-20
 
 ### Added

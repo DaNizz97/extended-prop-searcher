@@ -15,6 +15,9 @@ and error detection for property references.
   single declaration — rename refactoring can be done from usage. If there are multiple declarations it is possible to 
   perform such refactoring only from the specific declaration (standard IDEA behavior).
 
+Scope: A placeholder is recognized only when the referenced text can legally be used as a property key (letters, 
+digits, dots or underscores). Any other pattern is ignored and left untouched by the plugin.
+
 <!-- Plugin description end -->
 
 ## Installation

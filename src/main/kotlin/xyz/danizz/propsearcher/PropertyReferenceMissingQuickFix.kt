@@ -39,15 +39,16 @@ class PropertyReferenceMissingQuickFix(private val key: String) : BaseIntentionA
             WriteCommandAction.runWriteCommandAction(project) {
                 val psiFile = psiManager.findFile(chosen) ?: return@runWriteCommandAction
                 val propFile = PropertiesImplUtil.getPropertiesFile(psiFile) ?: return@runWriteCommandAction
+                val docMgr = PsiDocumentManager.getInstance(project)
+                var property = propFile.findPropertyByKey(key)
 
-                val property = propFile.findPropertyByKey(key) ?: propFile.addPropertyAfter(
-                    key, DEFAULT_VALUE, propFile.properties.last()
-                )
-
-                val document =
-                    PsiDocumentManager.getInstance(project).getDocument(psiFile) ?: return@runWriteCommandAction
-                PsiDocumentManager.getInstance(project).doPostponedOperationsAndUnblockDocument(document)
-                PsiDocumentManager.getInstance(project).commitDocument(document)
+                if (property == null) {
+                    val doc = docMgr.getDocument(psiFile) ?: return@runWriteCommandAction
+                    if (!doc.text.endsWith('\n') && !doc.text.isEmpty()) doc.insertString(doc.textLength, "\n")
+                    doc.insertString(doc.textLength, "$key=$DEFAULT_VALUE")
+                    docMgr.commitDocument(doc)
+                    property = propFile.findPropertyByKey(key) ?: return@runWriteCommandAction
+                }
 
                 val valueElement = property.psiElement.lastChild ?: return@runWriteCommandAction
                 val editorToUse = FileEditorManager.getInstance(project)

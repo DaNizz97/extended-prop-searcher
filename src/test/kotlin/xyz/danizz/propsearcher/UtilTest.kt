@@ -33,18 +33,15 @@ class ExtractPlaceholderKeysTest {
     fun `test that empty list returned if no placeholders`() {
         assertTrue(extractPlaceholderKeys("plain text").isEmpty())
     }
+
+    @Test
+    fun `test that multiline-key placeholder is not collapsed`() {
+        val value = "\${val\\\n  kek}"
+        assertEquals(true, extractPlaceholderKeys(value).isEmpty())
+    }
 }
 
 class PlaceholderRegexFieldTest {
-
-    @Test
-    fun `test that regex pattern literal remains stable`() {
-        assertEquals(
-            """\$\{(?<key>[^:}]+)(?::(?<default>[^}]*))?}""",
-            PLACEHOLDER_REGEX.pattern
-        )
-    }
-
     @Test
     fun `test that only key captured correctly`() {
         val m = PLACEHOLDER_REGEX.find("\${user}")!!
