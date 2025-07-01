@@ -12,5 +12,12 @@
         <psi.referenceContributor implementation="xyz.danizz.propsearcher.PsiPropertyRefContributor"
                                   language="Properties"/>
         <annotator language="Properties" implementationClass="xyz.danizz.propsearcher.PropAnnotator"/>
+        <postStartupActivity implementation="xyz.danizz.propsearcher.PlaceholderCopyActivity"/>
+        <applicationConfigurable
+                instance="xyz.danizz.propsearcher.settings.PlaceholderCopyConfigurable"
+                id="placeholder.copy"
+                key="configurable.displayName"
+                bundle="PropertiesPlaceholder"
+                parentId="tools"/>
     </extensions>
 </idea-plugin>

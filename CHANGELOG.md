@@ -4,6 +4,16 @@
 
 ## [Unreleased]
 
+## [1.4.0] - 2025-07-01
+
+### Added
+
+- **Placeholder-aware copy:** When the caret sits inside a `${…}` placeholder in a `.properties` value
+  (with no selection), pressing **Ctrl/Cmd + C** now copies only the key inside the braces.
+- **Settings toggle:** A new checkbox **“Enable placeholder-aware copy”** in
+  *Settings ▸ Tools ▸ Properties Placeholder* lets you turn this behavior on or off. Disabling it restores the IDE’s
+  default copy action.
+
 ## [1.3.0] - 2025-06-28
 
 ### Fixed
@@ -43,7 +53,8 @@
 `propKey=${refToProp:defaultVal}`) to their declaration or usage.
 - **Highlighting:** Correctly highlights references: normal for valid ones, warning for unresolved.
 
-[Unreleased]: https://github.com/DaNizz97/extended-prop-searcher/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/DaNizz97/extended-prop-searcher/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/DaNizz97/extended-prop-searcher/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/DaNizz97/extended-prop-searcher/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/DaNizz97/extended-prop-searcher/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/DaNizz97/extended-prop-searcher/compare/v1.1.0...v1.1.1
